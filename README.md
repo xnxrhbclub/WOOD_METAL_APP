@@ -62,24 +62,6 @@ python3 main.py
 
 Порог `WARN_DAYS` меняется одной строкой в `main.py`.
 
-## Сборка в APK (на Linux/WSL)
-
-Buildozer собирает APK только на Linux. Если ты на Windows — используй WSL,
-если на Mac — виртуалку с Linux или Docker-образ buildozer.
-
-```bash
-python3 -m pip install buildozer cython
-sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config \
-    zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
-
-cd order_app
-buildozer android debug
-```
-
-Первая сборка долгая (скачивает Android SDK/NDK). Готовый файл появится в
-`bin/zakazy-0.1-debug.apk` — его можно закинуть на телефон и установить
-(с включённой опцией "установка из неизвестных источников").
-
 ## Что дальше (когда определится источник заказов)
 
 Сейчас заказы добавляются вручную через форму. Когда решится, откуда будут
