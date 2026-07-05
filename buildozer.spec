@@ -19,7 +19,6 @@ android.permissions = INTERNET,POST_NOTIFICATIONS,RECEIVE_BOOT_COMPLETED
 
 android.minapi = 21
 android.api = 34
-android.sdk = 34
 android.ndk = 25b
 android.build_tools_version = 34.0.0
 
