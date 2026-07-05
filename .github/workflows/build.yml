@@ -2,29 +2,28 @@ name: Build APK
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
-      - name: Build APK in Docker
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t wood-metal-builder .
+
+      - name: Build APK
         run: |
           docker run --rm \
-            -v ${{ github.workspace }}:/home/user/app \
-            -w /home/user/app \
-            kivy/buildozer:latest \
-            buildozer android debug
+          -e BUILDOZER_ALLOW_ROOT=1 \
+          -v ${{ github.workspace }}:/app \
+          wood-metal-builder
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
-        if: success()
         with:
           name: APK
           path: bin/*.apk
